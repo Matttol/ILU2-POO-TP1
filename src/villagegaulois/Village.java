@@ -8,10 +8,12 @@ public class Village {
 	private Chef chef;
 	private Gaulois[] villageois;
 	private int nbVillageois = 0;
+	private Marche marche;
 
-	public Village(String nom, int nbVillageoisMaximum) {
+	public Village(String nom, int nbVillageoisMaximum, int nbEtalsMax) {
 		this.nom = nom;
 		villageois = new Gaulois[nbVillageoisMaximum];
+		marche = new Marche(nbEtalsMax);
 	}
 
 	public String getNom() {
@@ -82,7 +84,7 @@ public class Village {
 			return -1;
 		}
 
-		Etal[] trouverEtals (String produit) {
+		private Etal[] trouverEtals (String produit) {
 			Etal[] etalsProduit;
 			etalsProduit = new Etal[nbEtalsMax];
 			int y = 0;
@@ -95,7 +97,7 @@ public class Village {
 			return etalsProduit;
 		}
 
-		Etal trouverVendeur(Gaulois gaulois) {
+		private Etal trouverVendeur(Gaulois gaulois) {
 			for (int i = 0; i<nbEtalsMax; i++){
 				if (etals[i].getVendeur() == gaulois){
 					return etals[i];
@@ -104,13 +106,17 @@ public class Village {
 			return null;
 		}
 
-		String afficherMarche(){
-			String marche;
-			for (int i = 0; i<nbEtalsMax; i++){
+		private String afficherMarche(){
+			StringBuilder marche = new StringBuilder("");
+			int i = 0;
+			for (i = 0; i<nbEtalsMax; i++){
 				while (etals[i] != null){
-					StringBuilder audclk
+					marche.append(etals[i].afficherEtal());
 				}
 			}
+			marche.append(String.format("Il reste %d étals non utilisés dans le marché.\n",nbEtalsMax-i));
+			String desc = marche.toString();
+			return desc;
 		}
 
 	}
