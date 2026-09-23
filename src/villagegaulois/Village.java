@@ -108,7 +108,7 @@ public class Village {
 			String marche;
 			for (int i = 0; i<nbEtalsMax; i++){
 				while (etals[i] != null){
-					StringBuilder
+					StringBuilder audclk
 				}
 			}
 		}
